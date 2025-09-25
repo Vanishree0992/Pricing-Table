@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* Global */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #007bff, #00c6ff);
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+
+    /* Portfolio */
+    .portfolio-section {
+      padding: 80px 0;
+      background: #f9f9f9;
+    }
+    .portfolio-item {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+    .portfolio-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .portfolio-content {
+      padding: 20px;
+    }
+    .portfolio-content h5 {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .portfolio-content p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .fade-in {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* Footer */
+    footer {
+      background: #222;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>My Portfolio</h1>
+    <p>Showcasing some of my best projects and designs</p>
+  </header>
+
+  <!-- Portfolio Section -->
+  <section class="portfolio-section">
+    <div class="container">
+      <div class="row g-4">
+        
+        <!-- Project 1 -->
+        <div class="col-md-4">
+          <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Project 1">
+            <div class="portfolio-content">
+              <h5>Project One</h5>
+              <p>A modern web application built with Django and Bootstrap, featuring user authentication and responsive design.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="col-md-4">
+          <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80" alt="Project 2">
+            <div class="portfolio-content">
+              <h5>Project Two</h5>
+              <p>An e-commerce platform with product listings, shopping cart, and integrated payment system for seamless online shopping.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="col-md-4">
+          <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=800&q=80" alt="Project 3">
+            <div class="portfolio-content">
+              <h5>Project Three</h5>
+              <p>A personal blog site with categories, tags, search functionality, and an elegant reading experience for users.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 My Portfolio. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Fade-in effect on scroll
+    document.addEventListener("DOMContentLoaded", function () {
+      const items = document.querySelectorAll(".portfolio-item");
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add("fade-in");
+            }, index * 300); // stagger animation
+          }
+        });
+      }, { threshold: 0.2 });
+
+      items.forEach(item => observer.observe(item));
+    });
+  </script>
+
+</body>
+</html>
