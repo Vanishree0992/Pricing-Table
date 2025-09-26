@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Modal Form</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* Full height & flex layout for body */
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f7fc;
+    }
+
+    /* Sticky footer */
+    footer {
+      background-color: #d8bfd8; /* Pastel mauve */
+      color: #4b2c4d;
+      font-weight: 600;
+      text-align: center;
+      padding: 15px;
+      margin-top: auto;
+    }
+
+    .navbar {
+      background-color: #d8bfd8; /* Pastel mauve */
+    }
+
+    .navbar-brand, .nav-link {
+      color: #4b2c4d !important;
+      font-weight: 600;
+    }
+
+    .btn-mauve {
+      background-color: #d8bfd8;
+      color: #4b2c4d;
+      font-weight: 600;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-mauve:hover {
+      background-color: #c5a0c5;
+      transform: scale(1.05);
+    }
+
+    .card-custom {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    /* Modal slide-down animation */
+    .modal.fade .modal-dialog {
+      transform: translateY(-50px);
+      transition: transform 0.4s ease-out;
+    }
+    .modal.show .modal-dialog {
+      transform: translateY(0);
+    }
+
+    /* Center main content */
+    main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">My Website</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Section -->
+  <main>
+    <h2 class="mb-4 text-dark">✨ Modal Form with Bootstrap ✨</h2>
+    
+    <!-- Button to open modal -->
+    <button type="button" class="btn btn-mauve" data-bs-toggle="modal" data-bs-target="#formModal">
+      Open Form
+    </button>
+
+    <!-- Area to display submitted data -->
+    <div id="result" class="card-custom d-none"></div>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color:#d8bfd8;">
+          <h5 class="modal-title text-dark" id="formModalLabel">Enter Your Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="userForm">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name:</label>
+              <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email:</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <button type="submit" class="btn btn-mauve w-100">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 My Website | Designed with 💜 Bootstrap
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JS -->
+  <script>
+    const form = document.getElementById("userForm");
+    const result = document.getElementById("result");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+
+      result.innerHTML = `
+        <h4 class="mb-2">✅ Submitted Data</h4>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+      `;
+      result.classList.remove("d-none");
+
+      const modal = bootstrap.Modal.getInstance(document.getElementById("formModal"));
+      modal.hide();
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
